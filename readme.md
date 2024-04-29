@@ -6,7 +6,7 @@
 |Marcos Daniel Bonifasi de León |202202410|       
 
 
-[Ejecutable](./dist/main/)
+[Ejecutable](./dist/main/main)
 
 
 
