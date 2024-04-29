@@ -3,7 +3,8 @@
 
 |Nombre|Carne|
 |---|---|
-|Marcos Daniel Bonifasi de León |202202410|       
+|Marcos Daniel Bonifasi de León |202202410|   
+|Kevin Daniel Catún Landaverde |202200378|    
 
 
 [Ejecutable](./dist/main/main)
