@@ -45,7 +45,7 @@ class GraphVisualizer:
         self.print_info_button.pack()
 
     def setup_graph_canvas(self):
-        self.figure = Figure(figsize=(10, 10))
+        self.figure = Figure(figsize=(7, 7))
         self.ax = self.figure.add_subplot(111)
         self.canvas = FigureCanvasTkAgg(self.figure, self.root)
         self.canvas.get_tk_widget().pack()
