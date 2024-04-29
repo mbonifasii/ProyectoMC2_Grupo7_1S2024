@@ -3,81 +3,103 @@ import tkinter as tk
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
 
-G = nx.Graph()
-root = tk.Tk()
-root.title("Algoritmo de búsqueda en Anchura y Profundidad")
+class GraphVisualizationApp:
+    def __init__(self):
+        self.graph = nx.Graph()
+        self.root = tk.Tk()
+        self.root.title("Algoritmo de búsqueda en Anchura y Profundidad")
+        self.source_vertex = None
+        
+        self.setup_gui()
+        
+    def setup_gui(self):
+        self.vertex_entry = tk.Entry(self.root)
+        self.vertex_entry.pack()
 
-source_node = None  # Variable para almacenar el nodo fuente
+        self.add_vertex_button = tk.Button(self.root, text="Agregar vértice", command=self.add_vertex)
+        self.add_vertex_button.pack()
 
-vertex_entry = tk.Entry(root)
-vertex_entry.pack()
+        self.edge_entry_1 = tk.Entry(self.root)
+        self.edge_entry_1.pack()
+        self.edge_entry_2 = tk.Entry(self.root)
+        self.edge_entry_2.pack()
 
-def add_vertex():
-    global source_node
-    vertex = vertex_entry.get()
-    if vertex:
-        G.add_node(vertex)
-        vertex_entry.delete(0, tk.END)
-        source_node = vertex  # Actualiza el nodo fuente
-    else:
-        print("Introduce un nombre de vértice válido.")
+        self.add_edge_button = tk.Button(self.root, text="Agregar arista", command=self.add_edge)
+        self.add_edge_button.pack()
 
-add_vertex_button = tk.Button(root, text="Agregar vértice", command=add_vertex)
-add_vertex_button.pack()
+        self.print_info_button = tk.Button(self.root, text="Info de datos agregados (consola)", command=self.print_info)
+        self.print_info_button.pack()
 
-edge_entry_1 = tk.Entry(root)
-edge_entry_1.pack()
-edge_entry_2 = tk.Entry(root)
-edge_entry_2.pack()
+        self.figure = Figure(figsize=(5, 5))
+        self.ax = self.figure.add_subplot(111)
+        self.canvas = FigureCanvasTkAgg(self.figure, self.root)
+        self.canvas.get_tk_widget().pack()
 
-def add_edge():
-    global source_node
-    source = edge_entry_1.get()
-    target = edge_entry_2.get()
-    if source and target:
-        G.add_edge(source, target)
-        edge_entry_1.delete(0, tk.END)
-        edge_entry_2.delete(0, tk.END)
-        source_node = source  # Actualiza el nodo fuente
-    else:
-        print("Introduce nodos válidos.")
+        self.draw_button = tk.Button(self.root, text="Dibujar grafo", command=self.draw_graph)
+        self.draw_button.pack()
 
-add_edge_button = tk.Button(root, text="Agregar arista", command=add_edge)
-add_edge_button.pack()
+        self.bfs_button = tk.Button(self.root, text="Búsqueda en anchura", command=self.show_bfs)
+        self.bfs_button.pack()
 
-print_info_button = tk.Button(root, text="Info de datos agregados (consola)", command=lambda: print("Número de nodos:", G.number_of_nodes(), "\nNúmero de bordes:", G.number_of_edges()))
-print_info_button.pack()
+        self.dfs_button = tk.Button(self.root, text="Búsqueda en profundidad", command=self.show_dfs)
+        self.dfs_button.pack()
+        
+    def add_vertex(self):
+        vertex = self.vertex_entry.get()
+        if vertex:
+            self.graph.add_node(vertex)
+            self.vertex_entry.delete(0, tk.END)
+            self.source_vertex = vertex
+        else:
+            print("Introduce un nombre de vértice válido.")
+        
+    def add_edge(self):
+        source = self.edge_entry_1.get()
+        target = self.edge_entry_2.get()
+        if source and target:
+            self.graph.add_edge(source, target)
+            self.edge_entry_1.delete(0, tk.END)
+            self.edge_entry_2.delete(0, tk.END)
+            self.source_vertex = source
+        else:
+            print("Introduce nodos válidos.")
+        
+    def print_info(self):
+        print("Número de nodos:", self.graph.number_of_nodes())
+        print("Número de bordes:", self.graph.number_of_edges())
+        
+    def draw_graph(self):
+        self.ax.clear()
+        pos = nx.spring_layout(self.graph)
+        nx.draw(self.graph, pos=pos, ax=self.ax, with_labels=True)
+        self.canvas.draw()
+        
+    def show_bfs(self):
+        if self.source_vertex:
+            bfs_edges = list(nx.bfs_edges(self.graph, source=self.source_vertex))
+            self.draw_graph_with_edges(bfs_edges, 'bfs')
+        else:
+            print("No se ha seleccionado un nodo fuente.")
+        
+    def show_dfs(self):
+        if self.source_vertex:
+            dfs_edges = list(nx.dfs_edges(self.graph, source=self.source_vertex))
+            self.draw_graph_with_edges(dfs_edges, 'dfs')
+        else:
+            print("No se ha seleccionado un nodo fuente.")
+        
+    def draw_graph_with_edges(self, edges, search_type):
+        self.ax.clear()
+        pos = nx.spring_layout(self.graph)
+        nx.draw(self.graph, pos=pos, ax=self.ax, with_labels=True)
+        if edges:
+            edge_color = 'r' if search_type == 'bfs' else 'g'
+            nx.draw_networkx_edges(self.graph, pos=pos, edgelist=edges, edge_color=edge_color, ax=self.ax)
+            nx.draw_networkx_nodes(self.graph, pos=pos, nodelist=[self.source_vertex] + [v for u, v in edges], node_color=edge_color, ax=self.ax)
+        self.canvas.draw()
+        
+    def run(self):
+        self.root.mainloop()
 
-figure = Figure(figsize=(5, 5))
-ax = figure.add_subplot(111)
-canvas = FigureCanvasTkAgg(figure, root)
-canvas.get_tk_widget().pack()
-
-def draw_graph(search_edges=None, search_type='bfs'):
-    ax.clear()
-    pos = nx.spring_layout(G)
-    nx.draw(G, pos=pos, ax=ax, with_labels=True)
-    if search_edges:
-        edge_color = 'r' if search_type == 'bfs' else 'g'
-        nx.draw_networkx_edges(G, pos=pos, edgelist=search_edges, edge_color=edge_color, ax=ax)
-        nx.draw_networkx_nodes(G, pos=pos, nodelist=[source_node] + [v for u, v in search_edges], node_color=edge_color, ax=ax)
-    canvas.draw()
-
-draw_button = tk.Button(root, text="Dibujar grafo", command=lambda: draw_graph())
-draw_button.pack()
-
-def show_bfs():
-    bfs_edges = list(nx.bfs_edges(G, source=source_node))
-    draw_graph(bfs_edges, 'bfs')
-
-bfs_button = tk.Button(root, text="Búsqueda en anchura", command=show_bfs)
-bfs_button.pack()
-
-def show_dfs():
-    dfs_edges = list(nx.dfs_edges(G, source=source_node))
-    draw_graph(dfs_edges, 'dfs')
-
-dfs_button = tk.Button(root, text="Búsqueda en profundidad", command=show_dfs)
-dfs_button.pack()
-
-root.mainloop()
+app = GraphVisualizationApp()
+app.run()
