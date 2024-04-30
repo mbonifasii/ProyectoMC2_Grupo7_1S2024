@@ -41,7 +41,7 @@ class GraphVisualizer:
         self.add_edge_button.pack()
 
     def setup_info_button(self):
-        self.print_info_button = tk.Button(self.root, text="Info de datos agregados (consola)", command=self.print_info)
+        self.print_info_button = tk.Button(self.root, text="Mostrar datos agregados", command=self.print_info)
         self.print_info_button.pack()
 
     def setup_graph_canvas(self):

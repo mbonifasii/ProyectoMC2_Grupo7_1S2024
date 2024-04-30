@@ -1,7 +1,8 @@
 <h1 align="center">Proyecto MC2</h1>
 
-Ingenieria en Ciencias y Sistemas         
-Universidad de San Carlos de Guatemala          
+*Visualizador de grafos, Algoritmos de búsqueda en profundidad y anchura*
+**Ingenieria en Ciencias y Sistemas**
+**Universidad de San Carlos de Guatemala**
 
 
 ## Tabla de contenidos
