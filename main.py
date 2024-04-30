@@ -8,7 +8,7 @@ class GraphVisualizer:
         self.graph = nx.Graph()
         self.root = tk.Tk()
         self.root.title("Algoritmo de búsqueda en Anchura y Profundidad")
-        self.root.geometry("800x600")
+        self.root.geometry("600x400")
         self.source_vertex = None
         
         self.setup_ui()
@@ -45,7 +45,7 @@ class GraphVisualizer:
         self.print_info_button.pack()
 
     def setup_graph_canvas(self):
-        self.figure = Figure(figsize=(7, 7))
+        self.figure = Figure(figsize=(5, 5))
         self.ax = self.figure.add_subplot(111)
         self.canvas = FigureCanvasTkAgg(self.figure, self.root)
         self.canvas.get_tk_widget().pack()
