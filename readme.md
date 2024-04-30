@@ -1,5 +1,8 @@
 <h1 align="center">Proyecto MC2</h1>
 
+Ingenieria en Ciencias y Sistemas         
+Universidad de San Carlos de Guatemala          
+
 
 ## Tabla de contenidos
 
@@ -23,19 +26,20 @@
 
 ## Archivo ejecutable
 
-Busca el [Archivo Ejecutable](./dist/main/main) en `/dist/main`
+Encuentra el [Archivo Ejecutable](./dist/main/main) en `/dist/main`
 
 ----
 
 ## Documentacion
 
 ### Manual tecnico
+Encuentra el [Manual Tecnico](/docs/ManualTecnico.pdf) en `/docs/ManualTecnico`
+
 ### Manual de usuario
+Encuentra el [Manual de usuario](/docs/ManualdeUsuario.pdf) en `/docs/ManualdeUsuario`
 
 
 
+------      
 
---------
-
-
-*Creado con :blue_heart: por el Grupo 7 en :guatemala:*
+Creado con :blue_heart: en :guatemala:
