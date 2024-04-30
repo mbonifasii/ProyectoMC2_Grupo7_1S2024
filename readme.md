@@ -1,7 +1,7 @@
 <h1 align="center">Proyecto MC2</h1>
 
-*Visualizador de grafos, Algoritmos de búsqueda en profundidad y anchura*
-**Ingenieria en Ciencias y Sistemas**
+*Visualizador de grafos, Algoritmos de búsqueda en profundidad y anchura*         
+**Ingenieria en Ciencias y Sistemas**         
 **Universidad de San Carlos de Guatemala**
 
 
