@@ -1,4 +1,4 @@
-# Proyecto MC2
+<h1 align="center">Proyecto MC2</h1>
 
 
 ## Tabla de contenidos
