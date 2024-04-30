@@ -23,7 +23,7 @@
 
 ## Archivo ejecutable
 
-Busca el [Archivo Ejecutable](./dist/main/main) en `/dis/main`
+Busca el [Archivo Ejecutable](./dist/main/main) en `/dist/main`
 
 ----
 
