@@ -7,6 +7,7 @@ Universidad de San Carlos de Guatemala
 ## Tabla de contenidos
 
 - [Integrantes grupo 7](#integrantes-grupo-7)
+- [Video explicatorio](#video-explicatorio)
 - [Archivo ejecutable](#archivo-ejecutable)
 - [Documentacion](#documentacion)
     - [Manual tecnico](#manual-tecnico)
@@ -21,6 +22,11 @@ Universidad de San Carlos de Guatemala
 |Marcos Daniel Bonifasi de León |202202410|   
 |Kevin Daniel Catún Landaverde |202200378|
 |José Sebastian Pirir Romero|202300335|
+
+----
+
+## Video explicatorio
+ Encuentra el video explicatorio [aqui](https://www.youtube.com/watch?v=oyH_mt5yERw)
 
 ----
 
