@@ -117,7 +117,7 @@ class GraphVisualizer:
     def run(self):
         self.root.mainloop()
 
-# Uso
+# Peform
 if __name__ == "__main__":
     visualizer = GraphVisualizer()
     visualizer.run()
